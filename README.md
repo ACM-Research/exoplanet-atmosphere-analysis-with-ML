@@ -3,6 +3,8 @@
 ## Description
 Determining an exoplanet's atmosphere's temperature and composition is a difficult and time consuming task. Research has demonstrated that machine learning models are able to perform atmospheric retrieval more efficiently than traditional models, however this research is still in its beginning stages. Participants will research different machine learning models to find the most efficient model for atmospheric retrieval.
 
+![Poster](https://github.com/ACM-Research/exoplanet-atmosphere-analysis-with-ML/blob/main/pics/finalpics/posterpic.png)
+
 
 ## Abstract
 Hundreds of thousands of exoplanets have been discovered, yet our knowledge of the structure and composition of these exoplanets is nowhere near as expansive. Recent research has determined that machine learning would be far more efficient than traditional methods for atmospheric retrieval, but creating a quick, robust, and independent model is an ongoing challenge. We present **ExoNeural** - a new machine learning approach to determining the composition of exoplanet atmospheres that could potentially be more efficient and robust than current models.
