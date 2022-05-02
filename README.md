@@ -15,11 +15,16 @@ We collected our data from the NASA Astrobiology II Team that collaborated with 
 
 While the data set was clean, there was one significant obstacle. 10,000 rows was not enough data to learn nuanced patterns and, as a result, we used a  **Gaussian Copula Model**  to be able to synthetically create more data.
 
+![Binned Synthetic Light Curve](https://github.com/ACM-Research/exoplanet-atmosphere-analysis-with-ML/blob/main/pics/finalpics/binnedSynthLightCurve.png)
+
+
 Our synthetic data generation was very successful as our  **two-sample Kolmogorov–Smirnov test**  gave a high score of  **0.88** . After generating synthetic data, we binned the features and left the real data set for testing and used the synthetic data set for training and validation.
 
 ## Model
 
 In our modelling efforts, we used a 1D CNN. We chose this neural network because our input was composed of  **45**  wavelength bins of measured radiation. To implement this, we used the  **keras**  and  **tensorflow**  libraries.
+  
+![Model Architecture](https://github.com/ACM-Research/exoplanet-atmosphere-analysis-with-ML/blob/main/pics/finalpics/modelFitIn.png)
   
 In our model, we utilized  **pooling**  layers after our convolutional layers to reduce dimensionality. We also applied  **batch normalization**  layers to have normalized data along and  **dropout**  layers to prevent neurons from arriving to the same conclusion---essentially making it harder for them to learn. 
   
@@ -28,13 +33,17 @@ After a series of such layers, we flattened the model with a  **flatten**  layer
 ## Results
 
 Drawing a scatter matrix of the five elements, we can begin to see our modelling gave us our predictions that had a  **unimodal distribution** . The predictions centered around a value had small deviations away from that as seen in the histogram.
-   
+
+![Results](https://github.com/ACM-Research/exoplanet-atmosphere-analysis-with-ML/blob/main/pics/finalpics/scatterMatrix_Predict.png)
+
 Our mean absolute error was  **1.004**  however, in our training, the MAE dropoff was very small.
 
 ## Analysis and Comparison
 While our modelling, objectively, was flawed as
 our predictions had low variance, we show better results in preliminary modelling compared to the NASA Astrobiology II Team who attempted to do something similar.
  
+![Comparison](https://github.com/ACM-Research/exoplanet-atmosphere-analysis-with-ML/blob/main/pics/finalpics/us.png)
+
 Comparing our modelling efforts and their modelling efforts, we see that we arrived at the same obstacle as them in terms of predictions.
 
 In their paper,  they were able to overcome this obstacle through the variance in their input features. That being said, we got a healthier variance which means with a better dataset, our model can perform better automatically.
