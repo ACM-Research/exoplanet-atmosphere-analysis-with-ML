@@ -5,31 +5,31 @@ Determining an exoplanet's atmosphere's temperature and composition is a difficu
 
 
 ## Abstract
-Hundreds of thousands of exoplanets have been discovered, yet our knowledge of the structure and composition of these exoplanets is nowhere near as expansive. Recent research has determined that machine learning would be far more efficient than traditional methods for atmospheric retrieval, but creating a quick, robust, and independent model is an ongoing challenge. We present \textbf{ExoNeural} - a new machine learning approach to determining the composition of exoplanet atmospheres that could potentially be more efficient and robust than current models.
+Hundreds of thousands of exoplanets have been discovered, yet our knowledge of the structure and composition of these exoplanets is nowhere near as expansive. Recent research has determined that machine learning would be far more efficient than traditional methods for atmospheric retrieval, but creating a quick, robust, and independent model is an ongoing challenge. We present {**ExoNeural**} - a new machine learning approach to determining the composition of exoplanet atmospheres that could potentially be more efficient and robust than current models.
 
 ## Introdution
 The traditional way to analyze the atmosphere of an exoplanet is through a look-up table combined with a physics-based forward model. Forward models use the laws of molecular physics to determine a planet's emitted radiation from the atmospheric makeup of the planet. Recently, neural networks have been applied to directly predict atmospheric gas abundances from emitted radiation. One of the first examples of this was Waldmann in 2016.
 
 ## Data Collection
-We collected our data from the NASA Astrobiology II Team that collaborated with Google Cloud to work on a project similar to ours. We were able to access our dataset through the cloud, accessing the Google Cloud public bucket to get \textbf{10,000} planets with their spectra in \textbf{4,378} columns along with the atmospheric composition of \textbf{12} key gases. We chose five of those gases to have our model predict: CO2, H2O, N2, CH4, O2.
+We collected our data from the NASA Astrobiology II Team that collaborated with Google Cloud to work on a project similar to ours. We were able to access our dataset through the cloud, accessing the Google Cloud public bucket to get {**10,000**} planets with their spectra in {**4,378**} columns along with the atmospheric composition of \{**12**} key gases. We chose five of those gases to have our model predict: CO2, H2O, N2, CH4, O2.
 
-While the data set was clean, there was one significant obstacle. 10,000 rows was not enough data to learn nuanced patterns and, as a result, we used a \textbf{Gaussian Copula Model} to be able to synthetically create more data.
+While the data set was clean, there was one significant obstacle. 10,000 rows was not enough data to learn nuanced patterns and, as a result, we used a {**Gaussian Copula Model**} to be able to synthetically create more data.
 
-Our synthetic data generation was very successful as our \textbf{two-sample Kolmogorov–Smirnov test} gave a high score of \textbf{0.88}. After generating synthetic data, we binned the features and left the real data set for testing and used the synthetic data set for training and validation.
+Our synthetic data generation was very successful as our {**two-sample Kolmogorov–Smirnov test**} gave a high score of {**0.88**}. After generating synthetic data, we binned the features and left the real data set for testing and used the synthetic data set for training and validation.
 
 ## Model
 
-In our modelling efforts, we used a 1D CNN. We chose this neural network because our input was composed of \textbf{45} wavelength bins of measured radiation. To implement this, we used the \textit{keras} and \textit{tensorflow} libraries.
+In our modelling efforts, we used a 1D CNN. We chose this neural network because our input was composed of \{**45**} wavelength bins of measured radiation. To implement this, we used the {**keras**} and {**tensorflow**} libraries.
   
-In our model, we utilized \textbf{pooling} layers after our convolutional layers to reduce dimensionality. We also applied \textbf{batch normalization} layers to have normalized data along and \textbf{dropout} layers to prevent neurons from arriving to the same conclusion---essentially making it harder for them to learn. 
+In our model, we utilized {**pooling**} layers after our convolutional layers to reduce dimensionality. We also applied {**batch normalization**} layers to have normalized data along and {**dropout**} layers to prevent neurons from arriving to the same conclusion---essentially making it harder for them to learn. 
   
-After a series of such layers, we flattened the model with a \textbf{flatten} layer and put it through a \textbf{dense} layer to predict our five compositions.
+After a series of such layers, we flattened the model with a {**flatten**} layer and put it through a {**dense**} layer to predict our five compositions.
 
 ## Results
 
-Drawing a scatter matrix of the five elements, we can begin to see our modelling gave us our predictions that had a \textbf{unimodal distribution}. The predictions centered around a value had small deviations away from that as seen in the histogram.
+Drawing a scatter matrix of the five elements, we can begin to see our modelling gave us our predictions that had a {**unimodal distribution**}. The predictions centered around a value had small deviations away from that as seen in the histogram.
    
-Our mean absolute error was \textbf{1.004} however, in our training, the MAE dropoff was very small.
+Our mean absolute error was {**1.004**} however, in our training, the MAE dropoff was very small.
 
 ## Analysis and Comparison
 While our modelling, objectively, was flawed as
@@ -43,7 +43,7 @@ In their paper,  they were able to overcome this obstacle through the variance i
 
 The quality of our dataset was a big thing that we could work on in the future. In our preprocessing, we applied a quality assessment with comparing the lightcurves' mean distribution among certain bins of an element. When the mean distributions were compared, the differences were negligible. Thus, a lack of variance in our dataset meant that the quality of our dataset was poor, but in the future, that's something we can focus on. 
   
-Seeing that this was the only available dataset that gave us exoplanet spectra \textbf{and} atmospheric elemental composition, future endeavors will involve gaining access to a more complete dataset. This will allow our model's functionality to be elevated automatically since our current model's flaws are tied down to dataset quality.
+Seeing that this was the only available dataset that gave us exoplanet spectra {**and**} atmospheric elemental composition, future endeavors will involve gaining access to a more complete dataset. This will allow our model's functionality to be elevated automatically since our current model's flaws are tied down to dataset quality.
 
 ## References
 
